@@ -4,8 +4,8 @@ on: push
 
 jobs:
   generate-sbom:
-  runs-on: windows-latest
-  steps:
-    - uses: philips-software/sbom-tool-installer-action@v1.0.0
-    - run: |
+    runs-on: windows-latest
+    steps:
+      - uses: philips-software/sbom-tool-installer-action@v1.0.0
+      - run: |
           sbom-tool -h
