@@ -1,17 +1,31 @@
-name: Run Microsoft SBOM Tool 
+name: Sample with SBOM generation
 
-on: push
+on: 
+  workflow_dispatch:
 
 jobs:
-  sbom:
-    name: runner / elvis
+  build:
+
     runs-on: ubuntu-latest
-    container:
-      image: elixir:1.9.4-slim
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Install Dependencies
-        run: |
-          mix do deps.get, deps.compile
-      - name: sbom
-        uses: red-shirts/action-mix-sbom@v1
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Build
+      run: dotnet build Microsoft.Sbom.sln --output buildOutput
+      
+    - name: Generate SBOM
+      run: |
+        curl -Lo $RUNNER_TEMP/sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
+        chmod +x $RUNNER_TEMP/sbom-tool
+        $RUNNER_TEMP/sbom-tool generate -b ./buildOutput -bc . -pn Test -pv 1.0.0 -nsb https://sbom.mycompany.com -V Verbose
+        ls ./buildOutput/_manifest/spdx_2.2/
+        cat ./buildOutput/_manifest/spdx_2.2/manifest.spdx.json
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        path: buildOutput
