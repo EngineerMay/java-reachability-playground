@@ -3,9 +3,15 @@ name: Run Microsoft SBOM Tool
 on: push
 
 jobs:
-  generate-sbom:
-    runs-on: windows-latest
+  sbom:
+    name: runner / elvis
+    runs-on: ubuntu-latest
+    container:
+      image: elixir:1.9.4-slim
     steps:
-      - uses: philips-software/sbom-tool-installer-action@v1.0.0
-      - run: |
-          sbom-tool -h
+      - uses: actions/checkout@v1
+      - name: Install Dependencies
+        run: |
+          mix do deps.get, deps.compile
+      - name: sbom
+        uses: red-shirts/action-mix-sbom@v1
