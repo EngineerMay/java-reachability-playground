@@ -9,5 +9,5 @@ jobs:
     steps:
     - uses: anchore/sbom-action@v0
       with:
-        image: engineermay/flask-app
+        image: mysql:latest
         
