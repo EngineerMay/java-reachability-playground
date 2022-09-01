@@ -10,4 +10,4 @@ jobs:
     - uses: anchore/sbom-action@v0
       with:
         artifact-name: sbom.spdx
-        path: ./src/
+        path: ./java-reachability-playground/
