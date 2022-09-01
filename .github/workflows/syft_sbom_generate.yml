@@ -8,7 +8,14 @@ jobs:
     name: Generate SBOM
     steps:
     - uses: anchore/sbom-action@v0
+      continue-on-error: true
       with:
         artifact-name: sbom.spdx
-        run: ls
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         path: ./java-reachability-playground/
+  build:
+    runs-on: ubuntu-latest
+    name: Show all dir
+    steps:
+    - name: List dir
+      run: ls
