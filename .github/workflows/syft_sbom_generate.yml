@@ -18,4 +18,4 @@ jobs:
     name: Show all dir
     steps:
     - name: List dir
-      run: ls
+      run: env
