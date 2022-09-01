@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Generate SBOM
     steps:
-    - uses: anchore/sbom-action@v0
-      with:
-        image: mysql:latest
-        
+    - name: Checkout repository content
+      uses: actions/checkout@v3
+    - name: Show file
+      run: cat README.md
+      
