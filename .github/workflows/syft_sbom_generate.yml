@@ -10,4 +10,5 @@ jobs:
     - uses: anchore/sbom-action@v0
       with:
         artifact-name: sbom.spdx
+        run: ls
         path: ./java-reachability-playground/
