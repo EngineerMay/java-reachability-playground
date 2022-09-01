@@ -1,1 +1,13 @@
+name: Run Syft Scan
 
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Generate SBOM
+    steps:
+    - uses: anchore/sbom-action@v0
+      with:
+        path : .
+      
