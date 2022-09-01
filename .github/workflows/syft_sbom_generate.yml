@@ -8,8 +8,6 @@ jobs:
     name: Generate SBOM
     steps:
     - uses: anchore/sbom-action@v0
-      continue-on-error: true
       with:
-        path: ./home/runner/work/
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        image: engineermay/flask-app
+        
