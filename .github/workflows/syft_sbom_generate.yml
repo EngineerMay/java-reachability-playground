@@ -10,12 +10,6 @@ jobs:
     - uses: anchore/sbom-action@v0
       continue-on-error: true
       with:
-        artifact-name: sbom.spdx
+        path: https://github.com/${{ github.repository }}/
+      env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        path: ./java-reachability-playground/
-  buildd:
-    runs-on: ubuntu-latest
-    name: Show all dir
-    steps:
-    - name: List dir
-      run: env
