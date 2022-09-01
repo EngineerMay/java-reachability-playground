@@ -13,7 +13,7 @@ jobs:
         artifact-name: sbom.spdx
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         path: ./java-reachability-playground/
-  build:
+  buildd:
     runs-on: ubuntu-latest
     name: Show all dir
     steps:
