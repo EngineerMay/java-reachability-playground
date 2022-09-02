@@ -12,5 +12,5 @@ jobs:
     - name: Create SBOM
       uses: anchore/sbom-action@v0
       with:
-        path: .
+        image: mysql:latest
       
