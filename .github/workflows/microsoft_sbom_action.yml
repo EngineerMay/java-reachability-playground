@@ -1,6 +1,6 @@
 name: Sample with SBOM generation
 
-on: push
+on: fork
 
 jobs:
   build:
